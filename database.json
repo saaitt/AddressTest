@@ -5,7 +5,9 @@
     "database": "address",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "port": 5432
+    "port": 5432,
+    "timeout":3000000,
+    "logging": false
   },
   "test": {
     "username": "address",
@@ -13,7 +15,9 @@
     "database": "address",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "port": 5432
+    "port": 5432,
+    "timeout":3000000,
+    "logging": false
   },
   "production": {
     "username": "address",
@@ -21,6 +25,8 @@
     "database": "address",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "port": 5432
+    "port": 5432,
+    "timeout":3000000,
+    "logging": false
   }
 }
