@@ -1,0 +1,24 @@
+{
+  "name": "addresstest",
+  "version": "1.0.0",
+  "description": "test for address.ir",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saaitt/AddressTest.git"
+  },
+  "author": "Saeed Firouzi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saaitt/AddressTest/issues"
+  },
+  "homepage": "https://github.com/saaitt/AddressTest#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.4.0",
+    "sequelize": "^6.3.5"
+  }
+}
