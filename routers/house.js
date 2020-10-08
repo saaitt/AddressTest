@@ -116,6 +116,18 @@ async function filterSearch(req, res) {
         let ageGte = req.body.ageGte;
         let ageLte = req.body.ageLte;
         let offset = req.body.offset || 0;
+        if (areaLte - areaGte < 0) {
+            return res.status(400).json({ message: "Area out of bounds." })
+        }
+        if (rentLte - rentGte < 0) {
+            return res.status(400).json({ message: "Rent out of bounds." })
+        }
+        if (mortgageLte - mortgageGte < 0) {
+            return res.status(400).json({ message: "Mortgageout of bounds."})
+        }
+        if (ageLte - ageGte < 0) {
+            return res.status(400).json({ message: "Age out of bounds." })
+        }
 
         let result = await houseHelper.filterSearch(areaGte, areaLte, rentGte, rentLte, mortgageGte, mortgageLte, ageGte, ageLte, offset)
         return res.status(200).send(result)
