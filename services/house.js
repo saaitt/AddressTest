@@ -120,7 +120,6 @@ async function filterSearch(areaGte, areaLte, rentGte, rentLte, mortgageGte, mor
     if (ageLte)
         where.mortgage = { [Op.gte]: mortgageGte }
 
-    console.log(where)
     let houses = await db.House.findAll({ where: where, offset: offset, limit: 25 })
     return houses
 }
