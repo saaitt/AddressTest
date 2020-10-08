@@ -5,7 +5,6 @@ Test for address.ir
 ### Postgres
 You need postgres wit postgis installed on it or you can use this image with the project's docker-compose
 ```
-# docker pull mdillon/postgis
 # docker-compose up
 ```
 ### node_modules
@@ -41,7 +40,7 @@ In order to do so use the following command:
   Sample request body:
   ```
   {
-    "arrayOfLocations": [
+    "locations": [
         {
             "latitude": 35.755096606456476,
             "longitude": 51.345163134043275

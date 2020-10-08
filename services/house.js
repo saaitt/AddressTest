@@ -77,8 +77,8 @@ async function nearbyHousesWithin500m(latitude, longitude) {
     })
     return houses
 }
-async function polygonSearch(arrayOfLocations) {
-    let polygonQuery = await makePolygonQuery(arrayOfLocations)
+async function polygonSearch(locations) {
+    let polygonQuery = await makePolygonQuery(locations)
     let query = `SELECT  id, age, rent, latitude, longitude, mortgage 
                     FROM "Houses"  
                     WHERE ST_Contains(` + polygonQuery + `,ST_MakePoint(longitude, latitude)) IS TRUE`
@@ -87,8 +87,8 @@ async function polygonSearch(arrayOfLocations) {
     })
     return houses
 }
-async function makePolygonQuery(arrayOfLocations) {
-    let polygonLocations = arrayOfLocations
+async function makePolygonQuery(locations) {
+    let polygonLocations = locations
     polygonLocations.push(polygonLocations[0])
     let ArrayOfPoints = 'ARRAY['
     for (let i = 0; i < polygonLocations.length; i++) {

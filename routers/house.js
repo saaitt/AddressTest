@@ -93,12 +93,12 @@ async function getNearbyHouses(req, res) {
 }
 async function polygonSearch(req, res) {
     try {
-        if (req.body.arrayOfLocations == undefined)
+        if (req.body.locations == undefined)
             return res.status(400).json({ message: "No data." })
-        if (req.body.arrayOfLocations.length < 3)
+        if (req.body.locations.length < 3)
             return res.status(400).json({ message: "You need to pick more cordinates." })
 
-        let result = await houseHelper.polygonSearch(req.body.arrayOfLocations)
+        let result = await houseHelper.polygonSearch(req.body.locations)
         return res.status(200).send(result)
     } catch (error) {
         console.log(error)
