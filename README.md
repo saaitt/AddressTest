@@ -32,3 +32,47 @@ In order to do so use the following command:
  node ./services/generateHouses
  ```
  
+ # PolygonSearch API
+ For polygon search use the following route with POST and a application/json body
+ ```
+  http://{HOST}:{PORT}/api/houses/polygonSearch
+  ```
+  
+  Sample request body:
+  ```
+  {
+    "arrayOfLocations": [
+        {
+            "latitude": 35.755096606456476,
+            "longitude": 51.345163134043275
+        },
+        {
+            "latitude": 35.755096606456476,
+            "longitude": 51.345163134043275
+        },
+        {
+            "latitude": 35.757345349813406,
+            "longitude": 51.34678322234799
+        },
+        {
+            "latitude": 35.758194487415544,
+            "longitude": 51.344014184810284
+        }
+    ]
+  }
+  ```
+
+# Nearby Houses API
+ For polygon search use the following route with POST and a application/json body
+ ```
+  http://{HOST}:{PORT}/api/houses/nearby
+  ```
+  
+  Sample request body:
+  ```
+  {
+    "latitude": 35.755096606456476,
+    "longitude":  51.345163134043275
+  }
+
+  ```
