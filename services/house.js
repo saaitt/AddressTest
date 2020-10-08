@@ -2,6 +2,68 @@ const db = require('../models')
 
 
 
+async function houseDetails(id) {
+    let house = await db.House.findOne({
+        where: {
+            id: id
+        }
+    })
+    return house
+}
+async function createNewHouse(area, latitude, longitude, rent, mortgage, age) {
+    let house = await db.House.create({
+        area: area,
+        latitude: latitude,
+        longitude: longitude,
+        rent: rent,
+        mortgage: mortgage,
+        age: age
+    })
+    return house
+}
+async function editHouse(id, area, latitude, longitude, rent, mortgage, age) {
+    let house = await db.House.findOne({
+        where: {
+            id: id
+        }
+    })
+    if (house == undefined || !house) {
+        throw { message: "House not found" }
+    } else {
+        if ((area != undefined || area))
+            house.area = area
+
+        if ((latitude != undefined || latitude))
+            house.latitude = latitude
+
+        if ((longitude != undefined || longitude))
+            house.longitude = longitude
+
+        if ((rent != undefined || rent))
+            house.rent = rent
+
+        if ((mortgage != undefined || mortgage))
+            house.mortgage = mortgage
+
+        if ((age != undefined || age))
+            house.age = age
+
+        await house.save();
+        return house
+    }
+}
+async function deleteHouse(id) {
+    let house = await db.House.findOne({
+        where: {
+            id: id
+        }
+    })
+    if (house.length == 0) {
+        throw { message: "House not found" }
+    } else {
+        await house.destroy()
+    }
+}
 async function nearbyHousesWithin500m(latitude, longitude) {
     let houses = await db.sequelize.query(` SELECT  id, age, rent, latitude, longitude, mortgage 
             FROM "Houses"  
@@ -41,3 +103,7 @@ async function makePolygonQuery(arrayOfLocations) {
 }
 module.exports.nearbyHousesWithin500m = nearbyHousesWithin500m
 module.exports.polygonSearch = polygonSearch
+module.exports.houseDetails = houseDetails
+module.exports.createNewHouse = createNewHouse
+module.exports.editHouse = editHouse
+module.exports.deleteHouse = deleteHouse
