@@ -75,3 +75,71 @@ In order to do so use the following command:
   }
 
   ```
+
+  # Filtered Search
+  The Search functions accepts all parameters related to a house object as it was asked exept the location parameters. every parameter can either have a GreaterThanEqual and LessThanEqual or have neither of them. 
+  Use the following route with POST and a application/json body
+    ps: The offset is self explanitory, api is limited to send back 25 results at a time, so use offset to move along results.
+```
+http://{HOST}:{PORT}/api/houses/search
+```
+Request body sample:
+```
+{
+    "areaGte": 10,
+    "areaLte": 100,
+    "rentGte": 100,
+    "rentLte": 100000,
+    "mortgageGte": 1000,
+    "mortgageLte": 100000,
+    "ageGte": 10,
+    "ageLte": 100,
+    "offset": 100
+}
+```
+
+# CRUD
+### Details Of A House
+POST ``http://{HOST}:{PORT}/api/houses/``
+Request body sample:
+```
+{
+    "id": "3bbf3196-a97f-4e66-98b1-08e37532a797"
+}
+```
+### Create New House
+PUT ``http://{HOST}:{PORT}/api/houses/``
+Request body sample:
+```
+{
+    "area": 1231,
+    "latitude": 35.758194487415777,
+    "longitude": 51.344014184810777,
+    "rent": 1222,
+    "mortgage": 222,
+    "age": 223
+}
+```
+### Delete A House
+DELETE ``http://{HOST}:{PORT}/api/houses/``
+Request body sample:
+```
+{
+    "id": "3bbf3196-a97f-4e66-98b1-08e37532a797"
+}
+```
+### Edit  A House
+PATCH ``http://{HOST}:{PORT}/api/houses/``
+If you dont incluede a parameter in the request body it will not be changed.
+Request body sample:
+```
+{
+    "id": "",
+    "area": 1,
+    "latitude": 1,
+    "longitude": 1,
+    "rent": 1,
+    "mortgage": 1,
+    "age": 1
+}
+```
