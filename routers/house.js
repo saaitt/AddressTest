@@ -20,6 +20,7 @@ async function houseDetails(req, res) {
         return res.status(200).send(result)
     } catch (error) {
         console.log(error)
+        res.status(503).send('There was an error')
     }
 }
 async function createNewHouse(req, res) {
@@ -42,6 +43,7 @@ async function createNewHouse(req, res) {
         return res.status(200).send(result)
     } catch (error) {
         console.log(error)
+        res.status(503).send('There was an error')
     }
 }
 async function editHouse(req, res) {
@@ -61,6 +63,7 @@ async function editHouse(req, res) {
         return res.status(200).send(result)
     } catch (error) {
         console.log(error)
+        res.status(503).send('There was an error')
     }
 }
 async function deleteHouse(req, res) {
@@ -69,9 +72,10 @@ async function deleteHouse(req, res) {
             returnres.status(400).json({ message: "Incomplete data." })
         }
         let result = await houseHelper.deleteHouse(req.body.id)
-        res.status(200).send(result)
+        res.status(200).send('Deleted')
     } catch (error) {
         console.log(error)
+        res.status(503).send('There was an error')
     }
 }
 async function getNearbyHouses(req, res) {
@@ -82,6 +86,7 @@ async function getNearbyHouses(req, res) {
         return res.status(200).send(result)
     } catch (error) {
         console.log(error)
+        res.status(503).send('There was an error')
     }
 }
 async function polygonSearch(req, res) {
@@ -95,6 +100,7 @@ async function polygonSearch(req, res) {
         return res.status(200).send(result)
     } catch (error) {
         console.log(error)
+        res.status(503).send('There was an error')
     }
 }
 module.exports = router
