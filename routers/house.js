@@ -3,6 +3,7 @@ const router = express.Router()
 const houseHelper = require('../services/house')
 
 router.post('/nearby', getNearbyHouses)
+router.post('/polygonSearch', polygonSearch)
 
 
 
@@ -16,5 +17,12 @@ async function getNearbyHouses(req, res) {
         console.log(error)
     }
 }
-
+async function polygonSearch(req, res) {
+    try {
+        let result = await houseHelper.polygonSearch(req.body.arrayOfLocations)
+        res.send(result)
+    } catch (error) {
+        console.log(error)
+    }
+}
 module.exports = router
