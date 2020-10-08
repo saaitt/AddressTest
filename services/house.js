@@ -1,5 +1,5 @@
 const db = require('../models')
-
+const { Op } = db.Sequelize
 
 
 async function houseDetails(id) {
@@ -101,9 +101,33 @@ async function makePolygonQuery(arrayOfLocations) {
     let query = `ST_MakePolygon(ST_MakeLine(` + ArrayOfPoints + `))`
     return query
 }
+async function filterSearch(areaGte, areaLte, rentGte, rentLte, mortgageGte, mortgageLte, ageGte, ageLte, offset) {
+    let where = {};
+    if (areaGte)
+        where.area = { [Op.gte]: areaGte }
+    if (areaLte)
+        where.area = { [Op.lte]: areaLte }
+    if (rentGte)
+        where.rent = { [Op.gte]: rentGte }
+    if (rentLte)
+        where.rent = { [Op.lte]: rentLte }
+    if (mortgageGte)
+        where.mortgage = { [Op.gte]: mortgageGte }
+    if (mortgageLte)
+        where.mortgage = { [Op.lte]: mortgageLte }
+    if (ageGte)
+        where.mortgage = { [Op.lte]: mortgageLte }
+    if (ageLte)
+        where.mortgage = { [Op.gte]: mortgageGte }
+
+    console.log(where)
+    let houses = await db.House.findAll({ where: where, offset: offset, limit: 25 })
+    return houses
+}
 module.exports.nearbyHousesWithin500m = nearbyHousesWithin500m
 module.exports.polygonSearch = polygonSearch
 module.exports.houseDetails = houseDetails
 module.exports.createNewHouse = createNewHouse
 module.exports.editHouse = editHouse
 module.exports.deleteHouse = deleteHouse
+module.exports.filterSearch = filterSearch
